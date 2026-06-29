@@ -1,0 +1,36 @@
+:root {
+  /* Palette */
+  --bg: #07070a;
+  --bg-soft: #0d0d12;
+  --surface: #121219;
+  --line: rgba(255, 255, 255, 0.1);
+  --text: #f4f4f0;
+  --muted: #8b8b95;
+  --muted-soft: #5c5c66;
+  --accent: #c8ff4d;
+  --accent-dim: #9bcc2e;
+
+  /* Type */
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Fluid type scale */
+  --step--1: clamp(0.78rem, 0.74rem + 0.2vw, 0.9rem);
+  --step-0: clamp(0.95rem, 0.9rem + 0.25vw, 1.06rem);
+  --step-1: clamp(1.2rem, 1.05rem + 0.7vw, 1.6rem);
+  --step-2: clamp(1.6rem, 1.3rem + 1.6vw, 2.6rem);
+  --step-3: clamp(2.2rem, 1.6rem + 3vw, 4rem);
+  --display: clamp(2.8rem, 1.2rem + 8vw, 9rem);
+
+  /* Spacing */
+  --gutter: clamp(1.25rem, 0.8rem + 2.5vw, 4.5rem);
+  --section-gap: clamp(6rem, 4rem + 10vw, 14rem);
+  --radius: 14px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Layout */
+  --maxw: 1500px;
+}

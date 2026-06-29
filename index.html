@@ -1,310 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description"
-            content="Gbolahan Oduyemi is a mobile developer that efficiently performs allocated tasks 
-            independently and in collaborative environments. With over 6 years hands-on and non-professional
-            experience using Java, Python, JavaScript, and Flutter to create and implement 
-            software applications."/>
-        <meta
-          name="keywords"
-          content="Gbolahan-Oduyemi, mobile-developer, gbolahan, oduyemi"/> 
-        <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon.ico">
-        <link rel="stylesheet" href="./styles.css"/>
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-        <title>Gbolahan Oduyemi || Mobile Developer</title>
-    </head>
-    <body>
-        <header >
-            <div class="nav-top flex">
-                <div class="flex logo-wrap" >
-                    <img src="./assets/logo.png" alt="logo" class="logo"/>
-                </div>
-                <img src="./assets/menu.svg" id="hamburger"/>
-            </div> 
-            <nav >
-                <div >   
-                <img src="./assets/close-icon.svg" alt="close-icon" id="close-icon" />
-                    <ul class="nav-items">
-                        <li>
-                            <a href="#" class="nav-link">Home</a></li>
-                        <li>
-                            <a href="#about" class="nav-link">About</a></li>
-                        <li>
-                            <a href="#projects" class="nav-link">Projects</a></li>
-                        <li>
-                            <a href="#contact" class="nav-link">Contact</a></li>
-                    </ul>
-                    <div class="flex media-wrap">
-                        <a href="facebook.com/gbolahan.oduyemi.395" target="_blank">
-                            <img src="./assets/contacts/facebook.svg" alt="facebook" class="height1"/>
-                        </a> 
-                        <a href="https://www.instagram.com/itsgbolahan/" target="_blank">
-                            <img src="./assets/contacts/Instagram.svg" alt="instagram" class="height1"/>
-                        </a>
-                        <a href="https://www.linkedin.com/in/gbolahanoduyemi/" target="_blank">
-                            <img src="./assets/contacts/linkedIn.svg" alt="linkedin" class="height1"/>
-                        </a>
-                        <a href="https://twitter.com/its_gbolahan" target="_blank">
-                            <img src="./assets/contacts/twitter.svg" alt="twitter" class="social-icon"/>
-                        </a>
-                        <a href="https://github.com/gbolahan146" target="_blank">
-                            <img src="./assets/contacts/github.svg" alt="github" class="social-icon"/>
-                        </a>
-                    </div>
-                </div> 
-            </nav>
-            <div class="content" >
-                <p>Hi, I'm Gbolahan, a Software developer.</p>
-                <h1 data-aos="fade-up">I design, develop and implement interactive mobile and web applications. </h1>
-                <a href="#contact">LET'S CONNECT</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#07070a" />
+
+    <title>Gbolahan Oduyemi — Software Engineer</title>
+    <meta
+      name="description"
+      content="Gbolahan Oduyemi is a software engineer building interactive products for mobile and web. 6+ years across Flutter, Swift, TypeScript, React and Python."
+    />
+    <meta
+      name="keywords"
+      content="Gbolahan Oduyemi, software engineer, frontend engineer, mobile developer, Flutter, Swift, TypeScript, React"
+    />
+    <link rel="canonical" href="https://gbolahanoduyemi.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gbolahanoduyemi.com/" />
+    <meta property="og:title" content="Gbolahan Oduyemi — Software Engineer" />
+    <meta
+      property="og:description"
+      content="Building interactive products for mobile & web."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@its_gbolahan" />
+
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader" aria-hidden="true">
+      <div class="preloader__count" id="preloader-count">0<span>%</span></div>
+      <div class="preloader__bar" id="preloader-bar"></div>
+    </div>
+
+    <!-- Backgrounds / overlays -->
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <!-- Custom cursor -->
+    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+    <!-- Nav -->
+    <header class="site-nav">
+      <a href="#top" class="site-nav__logo" data-magnetic>Gbolahan<span>.</span></a>
+      <nav class="nav-links" id="nav-links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <main id="top">
+      <!-- Hero -->
+      <section class="hero wrap" id="hero">
+        <p class="hero__eyebrow">
+          <span class="dot"></span> Gbolahan Oduyemi — Available for work
+        </p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="reveal-line"><span>Software engineer</span></span>
+          <span class="reveal-line"><span>building <em>interactive</em></span></span>
+          <span class="reveal-line"><span>products for mobile &amp; web.</span></span>
+        </h1>
+        <div class="hero__meta">
+          <p class="hero__intro" data-fade>
+            I'm a <strong>full-stack engineer</strong> with 6+ years shipping
+            polished apps across mobile and the web — from fintech to machine
+            learning.
+          </p>
+          <a href="#work" class="hero__scroll" data-magnetic>
+            <span class="line"></span> Scroll to explore
+          </a>
+        </div>
+      </section>
+
+      <!-- About -->
+      <section class="section wrap" id="about">
+        <p class="section__label">About</p>
+        <div class="about__grid">
+          <h2 class="about__lead" data-fade>
+            I design, build and ship <em>software people enjoy using.</em>
+          </h2>
+          <div class="about__body">
+            <p data-fade>
+              With over 6 years of hands-on experience using
+              <strong>Swift, Java, Python, JavaScript/TypeScript and Flutter</strong>,
+              I create and implement software across mobile and web — performing
+              equally well solo and in collaborative teams.
+            </p>
+            <p data-fade>
+              I enjoy being challenged and engaging with projects that push me
+              outside my comfort and knowledge set. With a strong background in
+              user experience, I keep the user's concerns front of mind, which
+              helps me prioritise the right features when building products.
+            </p>
+            <div class="about__facts">
+              <div class="about__fact" data-fade>
+                <div class="num">6+</div>
+                <div class="lbl">Years building</div>
+              </div>
+              <div class="about__fact" data-fade>
+                <div class="num">8+</div>
+                <div class="lbl">Shipped products</div>
+              </div>
+              <div class="about__fact" data-fade>
+                <div class="num">∞</div>
+                <div class="lbl">Curiosity</div>
+              </div>
             </div>
-        </header>
-        <main>
-            <section id="about">
-                <div class="about-me">
-                    <div data-aos="zoom-in">
-                        <!--<h2 style="text-align: left;">About Me</h2>-->
-                        <article>
-                            <p>As a mobile developer, I efficiently perform allocated tasks independently and in collaborative environments.
-                            With over 6 years hands-on and non-professional experience 
-                            using Swift, Java, Python, JavaScript, and <b>Flutter</b> to create and implement software applications.</p>
-        
-                            <p>I enjoy being challenged and engaging with projects that require me to work outside my comfort 
-                            and knowledge set.</p>
-        
-                            <p>With a strong background in User Experience I always put the concerns of the User in mind. 
-                            These give me the ability to prioritize features when building products.</p>
-                        </article>
-                    </div>
-                    <div class="resume-wrap flex" data-aos="zoom-in-left">
-                        <a  href="https://docdro.id/osXMO7a" target="_blank">View Resume</a></button>
-                        <div class="hr-line"></div>
-                    </div>
-                </div>
-            </section>
+            <p style="margin-top: 2rem" data-fade>
+              <a class="btn" href="https://docdro.id/osXMO7a" target="_blank" rel="noopener" data-magnetic>
+                View résumé →
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
 
-            <section id="projects">
-                <h2 data-aos="zoom-in">Projects</h2>
-               
-                <div class="portfolio">
-                    <div class="purple flex" data-aos="zoom-in-right">
-                        <div class="white flex">
-                            <img src="./assets/alaje.png" alt="" style="height: 6rem";>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-contents" data-aos="zoom-in-left">
-                        <img>
-                        <h3>AlajeHub 
-                            <!-- <img src="./assets/mobile.svg" style="background-color: aliceblue;  padding: .2rem .2rem;" alt="mobile" class="height1"/> -->
-                        </h3>
-                        <p>AlajeHub is a digital trading app that presents opportunities for trade of 
-                            digital assets and stores-of monetary-value between potential buyers and sellers 
-                            across the world..</p>
-                        <p><a target="_blank" href="https://play.google.com/store/apps/details?id=com.alajehub.alajemobile&hl=en_GB&gl=US&pli=1">Link to Project</a></p>
-                    </div>
-                </div>
-              
-                <div class="portfolio"> 
-                    <div class="blue flex" data-aos="zoom-in-right">
-                        <div class="white flex">
-                            <img src="./assets/bento.png" alt="">
-                        </div>
-                    </div>
-                    <div class="portfolio-contents" data-aos="zoom-in-left"> 
-                        <h3>Bento Africa  
-                            <!-- <img src="./assets/mobile.svg" style="background-color: aliceblue;  padding: .2rem .2rem;" alt="mobile" class="height1"/> -->
-                        </h3>
-                        <p>Pay by Bento, is a cloud-based salaries and benefits solution 
-                            that helps businesses do more with less. People By Bento, reimagines 
-                            HRM from the ground up.</p>
-                        <p>
-                            <a target="_blank" href="https://apps.apple.com/ng/app/bento-africa/id1473686223">Link to Project</a>
-                        </p>
-                    </div>
-                </div>
-                <div class="portfolio">
-                    <div class="darkPurple flex" data-aos="zoom-in-right">
-                        <div class="white flex">
-                            <img src="./assets/cubex.png" alt="" style="height: 6rem">
-                        </div>
-                    </div>
-                    <div class="portfolio-contents" data-aos="zoom-in-left">
-                        <h3>Cubex (Trading) 
-                             <!-- <img src="./assets/mobile.svg" style="background-color: aliceblue;  padding: .2rem .2rem;" alt="mobile" class="height1"/> -->
-                            </h3>
-                        <p>Cubex is an alternative payment platform allowing the easy use of cryptocurrencies and Gift cards for everyday transactions; whilst providing instant remittance solutions to Users.</p>
-                        <p><a target="_blank" href="https://play.google.com/store/apps/details?id=com.cubex.app">Link to Project</a></p>
-                    </div>
-                </div>
-                <div class="portfolio">
-                    <div class="lightblue flex" data-aos="zoom-in-right">
-                        <div class="white flex">
-                            <img src="./assets/deep.png" alt="" style="height: 6rem">
-                        </div>
-                    </div>
-                    <div class="portfolio-contents" data-aos="zoom-in-left">
-                        <h3>Deep Learning Applied (Machine learning/Python app) 
-                            </h3>
-                        <p>This FREE app will help you to apply and understand the applications of deep learning in our day to day activities. Here we are covering the most common applications from Sentiments Analysis, Image to Text NLP algorithm, Classifiers and more. The interactive app gives a glimpse of the capability of machine and deep learning at an intermediate level.  This “Machine/Deep Learning Applications 5 in 1” is helpful for quick classification of objects, feelings, food and gender. Also to show some AI-like behaviour created with your camera and Deep Learning Neural Network</p>
-                        <p><a target="_blank" href="https://play.google.com/store/apps/details?id=com.deep.machine_deep_learning">Link to Project</a></p>
-                    </div>
-                </div>
-                <div class="portfolio">
-                    <div class="grey flex" data-aos="zoom-in-right">
-                        <div class="white flex">
-                            <img src="./assets/identigo.png" alt="" style="height: 6rem";>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-contents" data-aos="zoom-in-left">
-                        <img>
-                        <h3>Identigo (e-Verification)
-                            <!-- <img src="./assets/mobile.svg" style="background-color: aliceblue;  padding: .2rem .2rem;" alt="mobile" class="height1"/> -->
-                        </h3>
-                        <p>Key Features:
-                            Employee Background Verification: Thoroughly verify employment history, education, certifications, and references to ensure trustworthy hires with the right skills and integrity.
-                            Domestic Staff Screening: Ensure the safety and security of your home or organization by conducting comprehensive background checks on domestic staff, creating a secure environment and offering peace of mind.
-                            Business Verification: Assess the financial stability, legal compliance, and reputation of business entities for informed decision-making and prevention of legal complications.
-                            Compliance Assurance: Maintain compliance with due diligence requirements and industry-specific regulations by verifying credentials, licenses, and adherence to standards, mitigating potential risks.</p>
-                        <p><a target="_blank" href="https://apps.apple.com/ng/app/identigo/id6451416797">Link to Project</a></p>
-                    </div>
-                </div>
-                <div class="portfolio"> 
-                    <div class="kyshiBlue flex" data-aos="zoom-in-right">
-                        <div class="white flex">
-                            <img src="./assets/kyshi.png" alt="">
-                        </div>
-                    </div>
-                    <div class="portfolio-contents" data-aos="zoom-in-left"> 
-                        <h3>Kyshi (Neo bank for Africans globally) 
-                            <!-- <img src="./assets/mobile.svg" style="background-color: aliceblue;  padding: .2rem .2rem;" alt="mobile" class="height1"/> -->
-                        </h3>
-                        <p>An app that provides a formal, simple and secure platform for Africans to transact across borders. Kyshi marketplace runs a peer to peer system that lets you create or accept an offer at a convenient rate. We are on a mission to unlock more countries while demystifying money transfers one currency at a time, connecting you to Africa.</p>
-                        <p>
-                            <a target="_blank" href="https://kyshi.co">Link to Project</a>
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="portfolio">
-                    <div class="blue flex" data-aos="zoom-in-right">
-                        <div class="white flex">
-                            <img src="./assets/mytime.png" alt="" style="height: 6rem";>
-                        </div>
-                    </div>
-                    
-                    <div class="portfolio-contents" data-aos="zoom-in-left">
-                        <img>
-                        <h3>MyTime (HRM tool)
-                            <!-- <img src="./assets/mobile.svg" style="background-color: aliceblue;  padding: .2rem .2rem;" alt="mobile" class="height1"/> -->
-                        </h3>
-                        <p>MyTime is a Bento application that employees use to check in by scanning their faces and clock into a shift, clock in and clock out of breaks and then clock out of a shift...</p>
-                        <p><a target="_blank" href="https://play.google.com/store/apps/details?id=com.bento.mytime&hl=en_GB&gl=US">Link to Project</a></p>
-                    </div>
-                </div>
-              
-                <div class="portfolio">
-                    <div class="grey flex" data-aos="zoom-in-right">
-                        <div class="white flex">
-                            <img src="./assets/twizll2.png" alt="" style="height: 6rem">
-                        </div>
-                    </div>
-                    <div class="portfolio-contents" data-aos="zoom-in-left">
-                        <h3>Twizll (e-Commerce)
-                             <!-- <img src="./assets/mobile.svg" style="background-color: aliceblue;  padding: .2rem .2rem;" alt="mobile" class="height1"/> -->
-                            </h3>
-                        <p>“Oh yes Twizll”, that will be your responds once you complete checkout on Twizll 
-                            App and receive our limited edition and bespoke African designs. Do you want secure 
-                            and convenient shopping of Fashion wears, tap download now?</p>
-                        <p><a target="_blank" href="https://play.google.com/store/apps/details?id=com.twizll.twizllapp">Link to Project</a></p>
-                    </div>
-                </div>
-                <!-- <div class="portfolio">
-                    <div class="lightblue flex" data-aos="zoom-in-right">
-                        <div class="white flex">
-                            <img src="./assets/chek.png" alt="" style="height: 6rem">
-                        </div>
-                    </div>
-                    <div class="portfolio-contents" data-aos="zoom-in-left">
-                        <h3>Cheks -->
-                              <!-- <img src="./assets/mobile.svg" style="background-color: aliceblue;  padding: .2rem .2rem;" alt="mobile" class="height1"/> -->
-                        <!-- </h3>
-                        <p>Cheks is a modern and well-defined Online Marketplace where REAL BUYERS meet REAL SELLERS. It is a platform that give everyone the opportunity to sell and buy anything online and at the comfort of their homes.
-                             We are like a modern bridge that connects buyers and sellers together. 
-                             Cheks has more modern features that make buying and selling easy for buyers and sellers. </p>
-                        <p><a target="_blank" href="https://cheks.ng/">Link to Project</a></p>
-                    </div>
-                </div> -->
-                <!-- <div class="portfolio">
-                    <div class="darkPurple flex" data-aos="zoom-in-right">
-                        <div class="white flex">
-                            <img src="./assets/rent.png" alt="" style="height: 6rem">
-                        </div>
-                    </div>
-                    <div class="portfolio-contents" data-aos="zoom-in-left">
-                        <h3>Rent Anything  
+      <!-- Tech marquee -->
+      <div class="marquee" id="marquee" aria-label="Technologies"></div>
 
-            </h3>
-                        <p>Rent on the go!  Rent from anywhere!
-                            Pick up your mobile phone 
-                            and rent an item immediately.
-                            Enjoy value quicker and cheaper.
-You can rent anything you need and start enjoying its value.</p>
-                        <p><a target="_blank" href="https://rentanythingservices.herokuapp.com">Link to Project</a></p>
-                    </div>
-                </div> -->
-            </section>
+      <!-- Work -->
+      <section class="section wrap" id="work">
+        <p class="section__label">Selected Work</p>
+        <h2 class="section__title" data-fade>
+          A selection of products I've helped design and engineer.
+        </h2>
+        <div class="work__list" id="work-list" style="margin-top: clamp(2.5rem, 6vw, 5rem)"></div>
+      </section>
 
-            <section id="contact">
-                <h2 data-aos="zoom-in">Get In Touch</h2>
-                <div>
-                    <div>
-                        <div data-aos="zoom-out-up">
-                            <p style="margin-bottom: 1rem;">Got a Job for me? Want to get to know me? Hit me up.</p>
-                            <a target="_blank" href="mailto: gbolahanoduyemi1@gmail.com" class="hello">hello@Gbolahan</a>    
-                        </div>
-                       
-                        <div class="connect" data-aos="zoom-out-down">
-                            <p>You can also connect with me on the media.</p>
-                            <div class="flex media-wrap" style="margin-top: .8rem;">
-                                <a href="facebook.com/gbolahan.oduyemi.395" target="_blank">
-                                    <img src="./assets/contacts/facebook.svg" alt="facebook" class="height1"/>
-                                </a> 
-                                <a href="https://www.instagram.com/itsgbolahan/" target="_blank">
-                                    <img src="./assets/contacts/Instagram.svg" alt="instagram" class="height1"/>
-                                </a>
-                                <a href="https://www.linkedin.com/in/gbolahanoduyemi/" target="_blank">
-                                    <img src="./assets/contacts/linkedIn.svg" alt="linkedin" class="height1"/>
-                                </a>
-                                <a href="https://twitter.com/its_gbolahan" target="_blank">
-                                    <img src="./assets/contacts/twitter.svg" alt="twitter" class="social-icon"/>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                   
-                </div>
-            </section>
-        </main>
-        <footer>
-            <div class="line"></div>
-            <div>
-                <div class="flex">
-                    <div class="flex logo-wrap">
-                        <img src="./assets/logo.png" alt="logo" class="logo"/>
-                    </div>
-                    <a href="https://github.com/gbolahan146" target="_blank">
-                        <img src="./assets/contacts/github.svg" alt="github" class="social-icon"/>
-                    </a>
-                </div>
-                <p>Copyright Gbolahan Oduyemi &copy;<span id="date">2022</span> All rights reserved.</p>
-            </div>
-        </footer>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script src="main.js"></script>
-    </body>
+      <!-- Contact -->
+      <section class="contact wrap" id="contact">
+        <p class="section__label" style="justify-content: center">Get in touch</p>
+        <h2 class="contact__big">
+          <a href="mailto:gbolahanoduyemi1@gmail.com" data-magnetic>Let's talk →</a>
+        </h2>
+        <p class="contact__sub">
+          Got a role, a project, or just want to say hi? My inbox is always open.
+        </p>
+        <div class="socials" id="socials"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap site-footer__inner">
+        <span>© <span id="year">2024</span> Gbolahan Oduyemi</span>
+        <span>Designed &amp; built in Lagos, NG</span>
+        <a href="https://github.com/gbolahan146" target="_blank" rel="noopener">Source on GitHub →</a>
+      </div>
+    </footer>
+
+    <!-- Floating work preview image -->
+    <div class="work-preview" id="work-preview" aria-hidden="true">
+      <img src="" alt="" id="work-preview-img" />
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

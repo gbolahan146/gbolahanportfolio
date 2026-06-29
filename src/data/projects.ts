@@ -73,19 +73,78 @@ export const projects: Project[] = [
   },
 ];
 
+export interface Role {
+  company: string;
+  title: string;
+  location: string;
+  period: string;
+  description: string;
+}
+
+export const experience: Role[] = [
+  {
+    company: "BT Group",
+    title: "Software Engineer",
+    location: "Birmingham, UK",
+    period: "2024 to Present",
+    description:
+      "Building intuitive, customer-facing interfaces alongside UI/UX teams and integrating RESTful services for real-time data within Agile delivery.",
+  },
+  {
+    company: "Kyshi",
+    title: "Mobile Engineer",
+    location: "Remote, UK",
+    period: "2022 to Present",
+    description:
+      "Architected core design-system components and the MVVM pattern (Provider and Bloc); shipped USD cross-border transfers and in-app virtual card issuance.",
+  },
+  {
+    company: "Bento Africa",
+    title: "Lead Mobile Developer",
+    location: "Remote",
+    period: "2020 to Present",
+    description:
+      "Led mobile for payroll, HRM and a face-recognition shift tool, plus the 'Inclusive' initiative formalising labour for domestic workers across Africa.",
+  },
+  {
+    company: "Twizll",
+    title: "Hybrid Mobile Developer",
+    location: "London, UK",
+    period: "2021",
+    description:
+      "Built a multi-sided fashion commerce app (buyer, seller, stylist) with Firebase biometric auth, cutting development time by 20%.",
+  },
+  {
+    company: "AlajeHub",
+    title: "Mobile Developer",
+    location: "Remote",
+    period: "2021",
+    description:
+      "Designed a gift-card trading platform with a real-time rate calculator and a secure, ground-up in-app wallet.",
+  },
+  {
+    company: "FlyTechie",
+    title: "Flutter Engineer",
+    location: "India",
+    period: "2020",
+    description:
+      "Authored custom Flutter packages bridging native Android and iOS APIs, lifting customer satisfaction by 60%.",
+  },
+];
+
 export const techStack: string[] = [
   "Flutter",
-  "Swift",
+  "Android",
+  "iOS",
   "TypeScript",
   "React",
-  "Dart",
+  "Vue / Nuxt",
+  "GraphQL",
   "JavaScript",
-  "Python",
-  "Java",
-  "Node.js",
-  "Three.js",
-  "GSAP",
+  "Dart",
   "Firebase",
+  "Data Structures",
+  "Algorithm Design",
 ];
 
 export const socials = [
@@ -96,5 +155,5 @@ export const socials = [
   { name: "Facebook", url: "https://facebook.com/gbolahan.oduyemi.395", icon: "/assets/contacts/facebook.svg" },
 ];
 
-export const RESUME_URL = "https://docdro.id/osXMO7a";
+export const RESUME_URL = "/Gbolahan-Oduyemi-Resume.pdf";
 export const EMAIL = "gbolahanoduyemi1@gmail.com";

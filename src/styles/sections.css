@@ -277,6 +277,52 @@
   }
 }
 
+/* ---------- Experience ---------- */
+.exp__list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+.exp-item {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: clamp(1rem, 3vw, 3rem);
+  padding-block: clamp(1.6rem, 3vw, 2.6rem);
+  border-bottom: 1px solid var(--line);
+}
+.exp-item__period {
+  font-size: var(--step--1);
+  color: var(--muted-soft);
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.5rem;
+}
+.exp-item__title {
+  font-size: clamp(1.3rem, 3vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.exp-item__company {
+  color: var(--accent);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.4rem;
+}
+.exp-item__desc {
+  color: var(--muted);
+  margin-top: 0.9rem;
+  max-width: 62ch;
+}
+@media (max-width: 640px) {
+  .exp-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+  .exp-item__period {
+    padding-top: 0;
+  }
+}
+
 /* ---------- Contact ---------- */
 .contact {
   text-align: center;

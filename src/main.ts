@@ -1,5 +1,5 @@
 import "./styles/main.css";
-import { projects, techStack, socials } from "./data/projects";
+import { projects, experience, techStack, socials } from "./data/projects";
 import { initBackground } from "./lib/background";
 import { initSmoothScroll } from "./lib/smoothScroll";
 import { initCursor } from "./lib/cursor";
@@ -25,6 +25,24 @@ function renderWork(): void {
         <p class="work-item__desc">${p.description}</p>
       </a>`;
     })
+    .join("");
+}
+
+function renderExperience(): void {
+  const list = document.getElementById("exp-list");
+  if (!list) return;
+  list.innerHTML = experience
+    .map(
+      (r) => `
+      <div class="exp-item" data-fade>
+        <div class="exp-item__period">${r.period}</div>
+        <div class="exp-item__role">
+          <h3 class="exp-item__title">${r.title}</h3>
+          <p class="exp-item__company">${r.company} · ${r.location}</p>
+          <p class="exp-item__desc">${r.description}</p>
+        </div>
+      </div>`
+    )
     .join("");
 }
 
@@ -74,6 +92,7 @@ function setYear(): void {
 function boot(): void {
   // Static / data-driven content first.
   renderWork();
+  renderExperience();
   renderMarquee();
   renderSocials();
   initNav();

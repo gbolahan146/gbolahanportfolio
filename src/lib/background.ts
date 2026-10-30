@@ -1,25 +1,23 @@
-import {
-  Mesh,
-  OrthographicCamera,
-  PlaneGeometry,
-  Scene,
-  ShaderMaterial,
-  Vector2,
-  WebGLRenderer,
-} from "three";
+// Full-screen shader background drawn with plain WebGL (no Three.js): a
+// single triangle covering the viewport and one fragment shader.
 
 const vertexShader = /* glsl */ `
+  attribute vec2 aPosition;
   varying vec2 vUv;
   void main() {
-    vUv = uv;
-    gl_Position = vec4(position, 1.0);
+    vUv = aPosition * 0.5 + 0.5;
+    gl_Position = vec4(aPosition, 0.0, 1.0);
   }
 `;
 
 // Flowing FBM-noise gradient. Dark base with sparse accent glow that drifts
 // toward the cursor. Kept low-contrast so foreground text stays legible.
 const fragmentShader = /* glsl */ `
+  #ifdef GL_FRAGMENT_PRECISION_HIGH
   precision highp float;
+  #else
+  precision mediump float;
+  #endif
   varying vec2 vUv;
 
   uniform float uTime;
@@ -27,10 +25,10 @@ const fragmentShader = /* glsl */ `
   uniform vec2 uMouse;
   uniform float uIntensity;
 
-  vec3 cBase   = vec3(0.027, 0.027, 0.039);
-  vec3 cDeep   = vec3(0.07, 0.06, 0.14);
-  vec3 cMid    = vec3(0.10, 0.16, 0.22);
-  vec3 cAccent = vec3(0.78, 1.0, 0.30);
+  const vec3 cBase   = vec3(0.027, 0.027, 0.039);
+  const vec3 cDeep   = vec3(0.07, 0.06, 0.14);
+  const vec3 cMid    = vec3(0.10, 0.16, 0.22);
+  const vec3 cAccent = vec3(0.78, 1.0, 0.30);
 
   vec2 hash(vec2 p) {
     p = vec2(dot(p, vec2(127.1, 311.7)), dot(p, vec2(269.5, 183.3)));
@@ -95,49 +93,79 @@ export interface Background {
   destroy: () => void;
 }
 
-export function initBackground(canvas: HTMLCanvasElement): Background {
+function compile(gl: WebGLRenderingContext, type: number, source: string): WebGLShader | null {
+  const shader = gl.createShader(type);
+  if (!shader) return null;
+  gl.shaderSource(shader, source);
+  gl.compileShader(shader);
+  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    console.warn(gl.getShaderInfoLog(shader));
+    gl.deleteShader(shader);
+    return null;
+  }
+  return shader;
+}
+
+// Returns null when WebGL is unavailable; the CSS background shows instead.
+export function initBackground(canvas: HTMLCanvasElement): Background | null {
   const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  const renderer = new WebGLRenderer({
-    canvas,
+  const gl = canvas.getContext("webgl", {
     antialias: false,
     powerPreference: "high-performance",
   });
+  if (!gl) return null;
+
+  const vs = compile(gl, gl.VERTEX_SHADER, vertexShader);
+  const fs = compile(gl, gl.FRAGMENT_SHADER, fragmentShader);
+  const program = gl.createProgram();
+  if (!vs || !fs || !program) return null;
+  gl.attachShader(program, vs);
+  gl.attachShader(program, fs);
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return null;
+  gl.useProgram(program);
+
+  // One oversized triangle covers the whole clip space.
+  const buffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+  const aPosition = gl.getAttribLocation(program, "aPosition");
+  gl.enableVertexAttribArray(aPosition);
+  gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
+
+  const uTime = gl.getUniformLocation(program, "uTime");
+  const uResolution = gl.getUniformLocation(program, "uResolution");
+  const uMouse = gl.getUniformLocation(program, "uMouse");
+  gl.uniform1f(gl.getUniformLocation(program, "uIntensity"), reduceMotion ? 0.4 : 1.0);
+
   const dpr = Math.min(window.devicePixelRatio, 1.5);
-  renderer.setPixelRatio(dpr);
+  let time = 0;
+  const mouse = { x: 0.5, y: 0.5 };
+  const targetMouse = { x: 0.5, y: 0.5 };
 
-  const scene = new Scene();
-  const camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
-  const uniforms = {
-    uTime: { value: 0 },
-    uResolution: { value: new Vector2(1, 1) },
-    uMouse: { value: new Vector2(0.5, 0.5) },
-    uIntensity: { value: reduceMotion ? 0.4 : 1.0 },
-  };
-
-  const material = new ShaderMaterial({
-    vertexShader,
-    fragmentShader,
-    uniforms,
-  });
-  const mesh = new Mesh(new PlaneGeometry(2, 2), material);
-  scene.add(mesh);
-
-  const targetMouse = new Vector2(0.5, 0.5);
+  function render() {
+    gl!.uniform1f(uTime, time);
+    gl!.uniform2f(uMouse, mouse.x, mouse.y);
+    gl!.drawArrays(gl!.TRIANGLES, 0, 3);
+  }
 
   function resize() {
     const w = window.innerWidth;
     const h = window.innerHeight;
-    renderer.setSize(w, h, false);
-    uniforms.uResolution.value.set(w, h);
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    gl!.viewport(0, 0, canvas.width, canvas.height);
+    gl!.uniform2f(uResolution, w, h);
+    if (reduceMotion) render();
   }
   resize();
 
   function onPointer(e: PointerEvent) {
-    targetMouse.set(e.clientX / window.innerWidth, 1 - e.clientY / window.innerHeight);
+    targetMouse.x = e.clientX / window.innerWidth;
+    targetMouse.y = 1 - e.clientY / window.innerHeight;
   }
 
   let visible = true;
@@ -150,13 +178,15 @@ export function initBackground(canvas: HTMLCanvasElement): Background {
   let last = performance.now();
   function loop() {
     cancelAnimationFrame(rafId);
+    last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
-      uniforms.uTime.value += dt;
+      time += dt;
       // Ease mouse toward target
-      uniforms.uMouse.value.lerp(targetMouse, 0.05);
-      renderer.render(scene, camera);
+      mouse.x += (targetMouse.x - mouse.x) * 0.05;
+      mouse.y += (targetMouse.y - mouse.y) * 0.05;
+      render();
       if (visible && !reduceMotion) rafId = requestAnimationFrame(tick);
     };
     rafId = requestAnimationFrame(tick);
@@ -166,12 +196,7 @@ export function initBackground(canvas: HTMLCanvasElement): Background {
   window.addEventListener("pointermove", onPointer);
   document.addEventListener("visibilitychange", onVisibility);
 
-  if (reduceMotion) {
-    // Render a single static frame.
-    renderer.render(scene, camera);
-  } else {
-    loop();
-  }
+  if (!reduceMotion) loop();
 
   return {
     destroy() {
@@ -179,9 +204,10 @@ export function initBackground(canvas: HTMLCanvasElement): Background {
       window.removeEventListener("resize", resize);
       window.removeEventListener("pointermove", onPointer);
       document.removeEventListener("visibilitychange", onVisibility);
-      material.dispose();
-      mesh.geometry.dispose();
-      renderer.dispose();
+      gl.deleteBuffer(buffer);
+      gl.deleteProgram(program);
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
     },
   };
 }

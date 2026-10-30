@@ -6,7 +6,7 @@ Live at [gbolahanoduyemi.com](https://gbolahanoduyemi.com).
 ## Stack
 
 - [Vite](https://vitejs.dev/) + TypeScript
-- [Three.js](https://threejs.org/) — animated gradient/noise shader background
+- Plain WebGL — animated gradient/noise shader background (falls back to CSS)
 - [GSAP](https://gsap.com/) + ScrollTrigger — reveals, marquee, hover interactions
 - [Lenis](https://github.com/darkroomengineering/lenis) — smooth scrolling
 

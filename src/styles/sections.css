@@ -6,7 +6,8 @@
 .reveal-line > * {
   display: block;
 }
-[data-fade] {
+/* Hidden only when JS is running; see the `js` class in index.html. */
+.js [data-fade] {
   opacity: 0;
   transform: translateY(28px);
 }

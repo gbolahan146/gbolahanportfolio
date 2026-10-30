@@ -73,6 +73,9 @@ body.has-cursor button {
   transform: scaleX(0);
   transform-origin: left;
 }
+html:not(.js) .preloader {
+  display: none;
+}
 
 /* ---------- Nav ---------- */
 .site-nav {

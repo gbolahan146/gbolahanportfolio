@@ -89,6 +89,13 @@ function setYear(): void {
   if (y) y.textContent = String(new Date().getFullYear());
 }
 
+// If anything in the animated layer fails, drop the `js` class so CSS shows
+// all content in its final state and the preloader stays out of the way.
+function showStatic(error: unknown): void {
+  console.error(error);
+  document.documentElement.classList.remove("js");
+}
+
 function boot(): void {
   // Static / data-driven content first.
   renderWork();
@@ -98,19 +105,32 @@ function boot(): void {
   initNav();
   setYear();
 
-  // Background + scroll + cursor.
-  const canvas = document.getElementById("bg-canvas") as HTMLCanvasElement | null;
-  if (canvas) initBackground(canvas);
-  initSmoothScroll();
-  initCursor();
+  try {
+    // Background is optional: without WebGL the CSS background shows.
+    const canvas = document.getElementById("bg-canvas") as HTMLCanvasElement | null;
+    if (canvas) {
+      try {
+        if (!initBackground(canvas)) canvas.remove();
+      } catch (error) {
+        console.warn(error);
+        canvas.remove();
+      }
+    }
 
-  // Reveals depend on rendered DOM.
-  initScrollReveals();
-  initMarquee();
-  initWorkPreview();
+    // Scroll + cursor.
+    initSmoothScroll();
+    initCursor();
 
-  // Run intro, then animate the hero in.
-  runPreloader().then(revealHero);
+    // Reveals depend on rendered DOM.
+    initScrollReveals();
+    initMarquee();
+    initWorkPreview();
+
+    // Run intro, then animate the hero in.
+    runPreloader().then(revealHero).catch(showStatic);
+  } catch (error) {
+    showStatic(error);
+  }
 }
 
 if (document.readyState === "loading") {

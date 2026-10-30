@@ -88,23 +88,23 @@ export const experience: Role[] = [
     location: "Birmingham, UK",
     period: "2024 to Present",
     description:
-      "Building intuitive, customer-facing interfaces alongside UI/UX teams and integrating RESTful services for real-time data within Agile delivery.",
+      "Led a Flutter broadband diagnostics tool inside the EE app (10M+ downloads), saving around £1,500 a week in support costs, and a personalised in-app help experience tailored to each customer's products.",
   },
   {
     company: "Kyshi",
-    title: "Mobile Engineer",
-    location: "Remote, UK",
-    period: "2022 to Present",
+    title: "Senior Mobile Engineer",
+    location: "United Kingdom",
+    period: "2022 to 2024",
     description:
-      "Architected core design-system components and the MVVM pattern (Provider and Bloc); shipped USD cross-border transfers and in-app virtual card issuance.",
+      "Architected a reusable Flutter design system and Clean Architecture (MVVM, Provider, Bloc); shipped USD remittance with Solid and virtual Mastercard and Visa cards for 50,000+ customers.",
   },
   {
     company: "Bento Africa",
     title: "Lead Mobile Developer",
-    location: "Remote",
-    period: "2020 to Present",
+    location: "Lagos",
+    period: "2020 to 2024",
     description:
-      "Led mobile for payroll, HRM and a face-recognition shift tool, plus the 'Inclusive' initiative formalising labour for domestic workers across Africa.",
+      "Led the Flutter team behind payroll and HR modules serving 10,000+ employees, plus SafeGuard and Inclusive, an initiative formalising labour for domestic workers across Africa.",
   },
   {
     company: "Twizll",
@@ -112,23 +112,23 @@ export const experience: Role[] = [
     location: "London, UK",
     period: "2021",
     description:
-      "Built a multi-sided fashion commerce app (buyer, seller, stylist) with Firebase biometric auth, cutting development time by 20%.",
+      "Built a cross-platform Flutter fashion commerce app with buyer, seller and stylist workflows and Firebase biometric auth.",
   },
   {
     company: "AlajeHub",
     title: "Mobile Developer",
-    location: "Remote",
+    location: "Lagos",
     period: "2021",
     description:
-      "Designed a gift-card trading platform with a real-time rate calculator and a secure, ground-up in-app wallet.",
+      "Built a gift-card trading platform with a real-time rate calculator and a secure in-app wallet with integrated payment gateways.",
   },
   {
     company: "FlyTechie",
     title: "Flutter Engineer",
-    location: "India",
+    location: "Remote, India",
     period: "2020",
     description:
-      "Authored custom Flutter packages bridging native Android and iOS APIs, lifting customer satisfaction by 60%.",
+      "Built reusable Flutter plugins bridging native Android and iOS functionality, lifting customer satisfaction scores by 60%.",
   },
 ];
 
@@ -143,8 +143,11 @@ export const techStack: string[] = [
   "JavaScript",
   "Dart",
   "Firebase",
-  "Data Structures",
-  "Algorithm Design",
+  "Kotlin",
+  "Swift",
+  "Bloc / Riverpod",
+  "Clean Architecture",
+  "CI/CD",
 ];
 
 export const socials = [

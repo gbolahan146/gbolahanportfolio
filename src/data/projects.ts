@@ -5,6 +5,16 @@ export interface Project {
   // Logo or screenshot for the hover preview; omit to skip the preview.
   image?: string;
   link: string;
+  linkLabel?: string;
+  // Featured projects render as large cards with phone mockups.
+  featured?: {
+    role: string;
+    stack: string[];
+    metric: { value: string; label: string };
+    // App screenshots (portrait, ~9:19.5). Until these are added, the phones
+    // show a stylised placeholder with the project's logo.
+    screens?: string[];
+  };
 }
 
 export const projects: Project[] = [
@@ -12,24 +22,42 @@ export const projects: Project[] = [
     title: "EE App",
     tag: "Telecoms · BT Group",
     description:
-      "Led a Flutter broadband diagnostics tool inside the EE app (10M+ downloads) that lets customers self-diagnose connectivity issues, saving around £1,500 a week in support costs, plus personalised in-app help based on each customer's products.",
+      "Led a Flutter broadband diagnostics tool inside the EE app that lets customers self-diagnose connectivity issues, plus a personalised in-app help experience that recommends articles based on each customer's products.",
     link: "https://apps.apple.com/gb/app/id567457151",
+    linkLabel: "View on the App Store",
+    featured: {
+      role: "Software Engineer",
+      stack: ["Flutter", "Dart", "REST APIs", "Unit & widget tests"],
+      metric: { value: "£1.5k / wk", label: "Support costs saved through self-service" },
+    },
   },
   {
     title: "Kyshi",
     tag: "Neobank · Fintech",
     description:
-      "A neobank giving Africans a simple, secure way to transact across borders. Built a peer-to-peer marketplace where users create and accept offers at convenient rates.",
+      "A neobank for cross-border payments across Africa. Architected the Flutter design system and Clean Architecture, then shipped USD remittance with Solid and in-app virtual Mastercard and Visa cards.",
     image: "/assets/kyshi.png",
     link: "https://kyshi.co",
+    linkLabel: "Visit kyshi.co",
+    featured: {
+      role: "Senior Mobile Engineer",
+      stack: ["Flutter", "Bloc", "Provider", "Clean Architecture", "CI/CD"],
+      metric: { value: "50,000+", label: "Customers on virtual cards" },
+    },
   },
   {
     title: "Bento Africa",
-    tag: "HR & Payroll · iOS",
+    tag: "HR & Payroll",
     description:
-      "A cloud-based salaries and benefits platform that reimagines HRM from the ground up, helping businesses do more with less.",
+      "A payroll and benefits platform for African businesses. Led the mobile team through payroll and HR modules, the SafeGuard job-security feature, and Inclusive, formalising labour for domestic workers.",
     image: "/assets/bento.png",
     link: "https://apps.apple.com/ng/app/bento-africa/id1473686223",
+    linkLabel: "View on the App Store",
+    featured: {
+      role: "Lead Mobile Developer",
+      stack: ["Flutter", "Dart", "Team leadership", "Agile"],
+      metric: { value: "10,000+", label: "Employees paid through the app" },
+    },
   },
   {
     title: "Identigo",

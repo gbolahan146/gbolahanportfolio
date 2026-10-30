@@ -180,6 +180,221 @@
   }
 }
 
+/* ---------- Featured work ---------- */
+.work__featured {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(5rem, 10vw, 9rem);
+  margin-block: clamp(3rem, 7vw, 6rem) clamp(5rem, 10vw, 9rem);
+}
+.feature {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+}
+/* Stacked (mobile): mockup first. Side by side: alternate sides. */
+.feature__media {
+  order: -1;
+}
+@media (min-width: 900px) {
+  .feature {
+    grid-template-columns: 1fr 1.05fr;
+    gap: clamp(3rem, 6vw, 7rem);
+  }
+  .feature__media {
+    order: 0;
+    aspect-ratio: 5 / 4;
+  }
+  .feature:nth-child(even) .feature__media {
+    order: -1;
+  }
+}
+.feature__index {
+  font-size: var(--step--1);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.feature__title {
+  font-size: var(--step-3);
+  margin: 0.8rem 0 1.2rem;
+}
+.feature__desc {
+  color: var(--muted);
+  max-width: 52ch;
+}
+.feature__metric {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 1rem;
+  margin-block: 2rem;
+  padding-block: 1.4rem;
+  border-block: 1px solid var(--line);
+}
+.feature__metric-value {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+.feature__metric-label {
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+.feature__meta {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.8rem 1.5rem;
+  align-items: baseline;
+  margin-bottom: 2rem;
+}
+.feature__meta dt {
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted-soft);
+}
+.feature__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.feature__stack li {
+  font-size: var(--step--1);
+  padding: 0.25rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+/* Phone mockups */
+.feature__media {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: calc(var(--radius) * 2);
+  border: 1px solid var(--line);
+  background: radial-gradient(
+      70% 60% at 30% 20%,
+      rgba(200, 255, 77, 0.1),
+      transparent 70%
+    ),
+    var(--surface);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.feature__phones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  will-change: transform;
+}
+.phone {
+  position: relative;
+  width: clamp(105px, 32%, 220px);
+  aspect-ratio: 9 / 19.5;
+  padding: 3%;
+  border-radius: 18% / 8.5%;
+  background: #0b0b10;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+  transform: rotate(-4deg) translateY(-4%);
+}
+.phone + .phone {
+  margin-left: -8%;
+  transform: rotate(4deg) translateY(8%);
+}
+.phone::before {
+  content: "";
+  position: absolute;
+  top: 4.5%;
+  left: 50%;
+  width: 30%;
+  height: 3%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #0b0b10;
+  z-index: 1;
+}
+.phone__screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 15% / 7%;
+  overflow: hidden;
+  background: #f4f4f0;
+}
+.phone__shot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.phone__screen--placeholder {
+  display: flex;
+  flex-direction: column;
+  gap: 7%;
+  padding: 26% 12% 12%;
+}
+.phone__logo {
+  width: 70%;
+  max-height: 14%;
+  object-fit: contain;
+  object-position: left;
+  margin-bottom: 6%;
+}
+.phone__wordmark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  letter-spacing: -0.04em;
+  color: #07070a;
+  margin-bottom: 4%;
+}
+/* Skeleton UI blocks */
+.sk {
+  display: block;
+  height: 4%;
+  width: 80%;
+  border-radius: 999px;
+  background: rgba(7, 7, 10, 0.12);
+}
+.sk--lg {
+  height: 7%;
+  width: 95%;
+  background: rgba(7, 7, 10, 0.2);
+}
+.sk--sm {
+  width: 55%;
+}
+.sk--btn {
+  margin-top: auto;
+  height: 9%;
+  width: 100%;
+  background: var(--accent);
+}
+.sk--card {
+  height: 24%;
+  width: 100%;
+  border-radius: 10px;
+  background: #07070a;
+}
+.sk--alt {
+  background: var(--accent);
+  height: 16%;
+}
+.phone__screen--v1 {
+  padding-top: 22%;
+}
+
+.work__more-label {
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
 /* ---------- Work ---------- */
 .work__list {
   display: flex;

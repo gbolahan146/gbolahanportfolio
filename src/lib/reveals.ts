@@ -13,7 +13,16 @@ export function runPreloader(): Promise<void> {
     const bar = document.getElementById("preloader-bar");
     if (!el || !count || !bar) return resolve();
 
-    if (reduceMotion) {
+    // Only play the intro on the first page view of a session.
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem("intro-seen") === "1";
+      sessionStorage.setItem("intro-seen", "1");
+    } catch {
+      // Storage blocked: just play the intro.
+    }
+
+    if (reduceMotion || seen) {
       el.style.display = "none";
       return resolve();
     }
@@ -28,15 +37,15 @@ export function runPreloader(): Promise<void> {
 
     tl.to(obj, {
       v: 100,
-      duration: 1.4,
+      duration: 0.7,
       ease: "power2.inOut",
       onUpdate: () => {
         count.firstChild!.textContent = String(Math.round(obj.v));
       },
     })
-      .to(bar, { scaleX: 1, duration: 1.4, ease: "power2.inOut" }, 0)
-      .to([count, bar], { opacity: 0, duration: 0.3 }, ">-0.1")
-      .to(el, { yPercent: -100, duration: 0.8, ease: "power3.inOut" }, ">-0.1");
+      .to(bar, { scaleX: 1, duration: 0.7, ease: "power2.inOut" }, 0)
+      .to([count, bar], { opacity: 0, duration: 0.2 }, ">-0.1")
+      .to(el, { yPercent: -100, duration: 0.6, ease: "power3.inOut" }, ">-0.1");
   });
 }
 
@@ -81,6 +90,19 @@ export function initScrollReveals(): void {
       ease: "power3.out",
       scrollTrigger: { trigger: item, start: "top 85%" },
     });
+  });
+
+  // Featured phone mockups drift slightly against the scroll.
+  gsap.utils.toArray<HTMLElement>(".feature__phones").forEach((phones) => {
+    gsap.fromTo(
+      phones,
+      { y: 40 },
+      {
+        y: -40,
+        ease: "none",
+        scrollTrigger: { trigger: phones, start: "top bottom", end: "bottom top", scrub: true },
+      }
+    );
   });
 
   // Section labels draw a line

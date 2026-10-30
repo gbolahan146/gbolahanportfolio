@@ -2,11 +2,19 @@ export interface Project {
   title: string;
   tag: string;
   description: string;
-  image: string;
+  // Logo or screenshot for the hover preview; omit to skip the preview.
+  image?: string;
   link: string;
 }
 
 export const projects: Project[] = [
+  {
+    title: "EE App",
+    tag: "Telecoms · BT Group",
+    description:
+      "Led a Flutter broadband diagnostics tool inside the EE app (10M+ downloads) that lets customers self-diagnose connectivity issues, saving around £1,500 a week in support costs, plus personalised in-app help based on each customer's products.",
+    link: "https://apps.apple.com/gb/app/id567457151",
+  },
   {
     title: "Kyshi",
     tag: "Neobank · Fintech",

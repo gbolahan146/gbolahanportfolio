@@ -133,7 +133,8 @@ export function initWorkPreview(): void {
   items.forEach((item) => {
     const src = item.dataset.image;
     item.addEventListener("pointerenter", () => {
-      if (src) img.src = src;
+      if (!src) return;
+      img.src = src;
       gsap.to(preview, { opacity: 1, scale: 1, duration: 0.4, ease: "power3.out" });
     });
     item.addEventListener("pointerleave", () => {

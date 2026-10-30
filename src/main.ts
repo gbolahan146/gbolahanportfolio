@@ -18,7 +18,7 @@ function renderWork(): void {
     .map((p, i) => {
       const index = String(i + 1).padStart(2, "0");
       return `
-      <a class="work-item" href="${p.link}" target="_blank" rel="noopener" data-image="${p.image}">
+      <a class="work-item" href="${p.link}" target="_blank" rel="noopener"${p.image ? ` data-image="${p.image}"` : ""}>
         <span class="work-item__index">${index}</span>
         <h3 class="work-item__title">${p.title}</h3>
         <span class="work-item__tag">${p.tag}</span>
